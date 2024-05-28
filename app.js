@@ -3,17 +3,25 @@ async function sendPrompt() {
   if (userInput.toLowerCase() === "exit") {
     alert("Exiting...");
   } else {
-    const response = await fetch(
-      "https://ai-webapp.onrender.com/generate", // Update this URL to your Render backend URL
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: userInput }),
+    try {
+      const response = await fetch(
+        "https://ai-webapp.onrender.com/generate",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt: userInput }),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-    );
-    const data = await response.json();
-    displayMessage("You", userInput);
-    displayMessage("Assistant", data.response);
+      const data = await response.json();
+      displayMessage("You", userInput);
+      displayMessage("Assistant", data.response);
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to fetch response from server");
+    }
   }
 }
 
