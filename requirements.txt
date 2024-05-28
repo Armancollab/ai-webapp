@@ -1,4 +1,6 @@
 Flask
-transformers
-tensorflow
+tensorflow==2.12.0
+transformers==4.30.0
 gunicorn
+tf-keras
+
