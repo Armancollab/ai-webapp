@@ -4,7 +4,7 @@ async function sendPrompt() {
     alert("Exiting...");
   } else {
     const response = await fetch(
-      "https://your-heroku-backend.herokuapp.com/generate",
+      "https://ai-webapp.onrender.com/generate", // Update this URL to your Render backend URL
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
